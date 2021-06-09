@@ -1,0 +1,7 @@
+$packageName = 'FreeOrion'
+$fileType = 'exe'
+$url = '{{ win32_url }}'
+$checksum = '{{ win32_hashsum }}'
+$silentArgs = '/S'
+
+Install-ChocolateyPackage $packageName $fileType "$silentArgs" "$url"
