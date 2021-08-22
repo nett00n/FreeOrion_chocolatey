@@ -1,7 +1,7 @@
 $packageName = 'FreeOrion'
 $fileType = 'exe'
-$url = 'https://github.com//freeorion/freeorion/releases/download/v0.4.10.1/FreeOrion_v0.4.10.1_2020-09-25.39cfe10_Win32_Setup.exe'
-$checksum = 'a80a4dbc780f8f08fd81aef71465ced65d46f7a89a1c3c78cac48ddba9793ef9'
+$url = 'https://github.com//freeorion/freeorion/releases/download/v0.4.10.2/FreeOrion_v0.4.10.2_2021-08-01.f663dad_Win32_Setup.exe'
+$checksum = 'f35041ee56a83c19ae3adeda8552c55d3580b1ba07fe8b87a8853279ae8c4f07'
 $silentArgs = '/S'
 
 Install-ChocolateyPackage $packageName $fileType "$silentArgs" "$url"
