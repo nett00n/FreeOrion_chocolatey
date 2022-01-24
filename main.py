@@ -11,10 +11,15 @@ def main():
     github_user = "freeorion"
     github_repo = "freeorion"
 
+    print('running github_html_data_lines')
     github_html_data_lines = get_data_from_github(github_user, github_repo)
+    print('running latest_version')
     latest_version = get_latest_version_from_html(github_html_data_lines)
+    print('running win32_url')
     win32_url = get_download_url_from_html("Win32", github_html_data_lines, latest_version)
+    print('running win32_hashsum')
     win32_hashsum = get_sha256_from_url(win32_url)
+    print('running render_choco_files')
     render_choco_files(latest_version, win32_url, win32_hashsum)
 
 def get_sha256_from_url(url):
@@ -82,21 +87,17 @@ def get_download_url_from_html(keyphrase, github_html_data_lines, version):
 
 def get_latest_version_from_html(github_html_data_lines):
     version = ''
-
     for line in github_html_data_lines:
         if "href" not in line:
             continue
-        if "/releases/" not in line:
+        if "releases" not in line:
             continue
-        if "SDK" in line:
-            continue
-        if "/tag/" in line:
-            test1 = line.split('"')
-            test2 = test1[1].split('/')
-            version = test2[-1]
-            version = re.sub(r"v", "", version)
-            print(version)
-            return(version)
+        if 'Win32_Setup' in line:
+            for i in line.split('"'):
+                if 'exe' in i:
+                    version = i.split('/')[5].split('v')[1]
+                    return(version)
+
 
 
 if __name__ == "__main__":
